@@ -16,7 +16,7 @@
                 cipher.start({iv: iv});
                 cipher.update(forge.util.createBuffer(value));
                 cipher.finish();
-                console.log(forge.util.encode64(cipher.output.data));
+                document.getElementById("result").value = forge.util.encode64(cipher.output.data);
             }
         }
 
@@ -29,8 +29,13 @@
                 decipher.start({iv: iv});
                 decipher.update(forge.util.createBuffer(forge.util.decode64(value)));
                 decipher.finish();
-                console.log(decipher.output.data);
+                document.getElementById("result").value = decipher.output.data;
             }
+        }
+
+        function copy() {
+            const result = document.getElementById("result").value;
+            navigator.clipboard.writeText(result);
         }
     </script>
 </head>
@@ -48,5 +53,10 @@
     <button name="encrypt" onclick="encrypt()">Encrypt</button>
     <button name="decrypt" onclick="decrypt()">Decrypt</button>
 </div>
+<br/>
+<label>
+    <textarea name="result" id="result" placeholder="result" rows="10" cols="50" disabled></textarea>
+</label>
+<button name="copy" onclick="copy()">Copy</button>
 </body>
 </html>
