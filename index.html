@@ -1,1 +1,52 @@
-<h1>Testing Github Pages</h1>
+<html xmlns="http://www.w3.org/1999/html" lang="en">
+<head>
+    <title>Cipher Text</title>
+    <link rel="stylesheet" href="index.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/node-forge@0.7.0/dist/forge.min.js"></script>
+    <script>
+        const iv = forge.random.getBytesSync(16);
+        const salt = forge.random.getBytesSync(128);
+
+        function encrypt() {
+            const password = document.getElementById("secretText").value;
+            if (password != null && password.length > 0) {
+                const value = document.getElementById("inputValue").value;
+                const key = forge.pkcs5.pbkdf2(password, salt, 10000, 32);
+                const cipher = forge.cipher.createCipher("AES-CBC", key);
+                cipher.start({iv: iv});
+                cipher.update(forge.util.createBuffer(value));
+                cipher.finish();
+                console.log(forge.util.encode64(cipher.output.data));
+            }
+        }
+
+        function decrypt() {
+            const password = document.getElementById("secretText").value;
+            if (password != null && password.length > 0) {
+                const value = document.getElementById("inputValue").value;
+                const key = forge.pkcs5.pbkdf2(password, salt, 10000, 32);
+                const decipher = forge.cipher.createDecipher("AES-CBC", key);
+                decipher.start({iv: iv});
+                decipher.update(forge.util.createBuffer(forge.util.decode64(value)));
+                decipher.finish();
+                console.log(decipher.output.data);
+            }
+        }
+    </script>
+</head>
+<body>
+<h1> Let's share secrets </h1>
+<label>
+    <textarea name="input" id="inputValue" placeholder="input" rows="10" cols="50"></textarea>
+</label>
+<br/>
+<label>
+    <input type="password" name="password" placeholder="secret" id="secretText"/>
+</label>
+<br/>
+<div class="buttons">
+    <button name="encrypt" onclick="encrypt()">Encrypt</button>
+    <button name="decrypt" onclick="decrypt()">Decrypt</button>
+</div>
+</body>
+</html>
