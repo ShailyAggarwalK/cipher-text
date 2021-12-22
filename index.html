@@ -8,6 +8,7 @@
         const salt = "${{ secrets.SALT }}";
 
         function encrypt() {
+            console.log("Hello")
             console.log('iv', iv);
             console.log('salt', salt);
             const password = document.getElementById("secretText").value;
