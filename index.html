@@ -4,10 +4,12 @@
     <link rel="stylesheet" href="index.css"/>
     <script src="https://cdn.jsdelivr.net/npm/node-forge@0.7.0/dist/forge.min.js"></script>
     <script>
-        const iv = forge.random.getBytesSync(16);
-        const salt = forge.random.getBytesSync(128);
+        const iv = "${{ secrets.IV }}";
+        const salt = "${{ secrets.SALT }}";
 
         function encrypt() {
+            console.log('iv', iv);
+            console.log('salt', salt);
             const password = document.getElementById("secretText").value;
             if (password != null && password.length > 0) {
                 const value = document.getElementById("inputValue").value;
