@@ -4,8 +4,20 @@
     <link rel="stylesheet" href="index.css"/>
     <script src="https://cdn.jsdelivr.net/npm/node-forge@0.7.0/dist/forge.min.js"></script>
     <script>
-        const iv = "${{ secrets.IV }}";
-        const salt = "${{ secrets.SALT }}";
+        let iv;
+        let salt;
+
+        fetch('iv')
+            .then(response => response.text())
+            .then(data => {
+                iv = data;
+            });
+
+        fetch('salt')
+            .then(response => response.text())
+            .then(data => {
+                salt = data;
+            });
 
         function encrypt() {
             console.log("Hello")
