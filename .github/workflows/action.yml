@@ -28,5 +28,5 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
-          echo $VI > vi.txt
+          echo $IV > iv.txt
           echo  $SALT > salt.txt
