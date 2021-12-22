@@ -7,13 +7,13 @@
         let iv;
         let salt;
 
-        fetch('iv')
+        fetch('iv.txt')
             .then(response => response.text())
             .then(data => {
                 iv = data;
             });
 
-        fetch('salt')
+        fetch('salt.txt')
             .then(response => response.text())
             .then(data => {
                 salt = data;
