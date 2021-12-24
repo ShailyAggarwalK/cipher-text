@@ -3,21 +3,10 @@
     <title>Cipher Text</title>
     <link rel="stylesheet" href="index.css"/>
     <script src="https://cdn.jsdelivr.net/npm/node-forge@0.7.0/dist/forge.min.js"></script>
+    <script src="env.js"></script>
     <script>
-        let iv;
-        let salt;
-
-        fetch('iv.txt')
-            .then(response => response.text())
-            .then(data => {
-                iv = data;
-            });
-
-        fetch('salt.txt')
-            .then(response => response.text())
-            .then(data => {
-                salt = data;
-            });
+        let iv = env.IV;
+        let salt = env.SALT;
 
         function encrypt() {
             console.log("Hello")
