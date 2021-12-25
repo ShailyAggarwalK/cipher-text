@@ -17,8 +17,12 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Check
-        run: echo %secrets.SALT%
+      - shell: bash
+        name: Print Ennv
+        env:
+          SALT: ${{ secrets.SALT }}
+        run: |
+          example-command "$SALT"
       - name: Set Env
         run: sh env.sh >> env.js
 
