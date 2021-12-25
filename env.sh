@@ -1,4 +1,4 @@
 echo "env = {"
-echo "  IV: '${{ secrets.IV }}',"
-echo "  SALT: '${{ secrets.SALT }}'"
+echo "  IV: $IV,"
+echo "  SALT: $SALT"
 echo "}"

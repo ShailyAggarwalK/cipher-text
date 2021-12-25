@@ -22,7 +22,5 @@ jobs:
         env:
           SALT: ${{ secrets.SALT }}
         run: |
-          echo $SALT
-      - name: Set Env
-        run: sh env.sh >> env.js
+          sh env.sh >> env.js
 
