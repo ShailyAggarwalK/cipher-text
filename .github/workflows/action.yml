@@ -18,11 +18,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - shell: bash
-        name: Print Ennv
+        name: Print Env
         env:
           SALT: ${{ secrets.SALT }}
         run: |
-          example-command "$SALT"
+          echo $SALT
       - name: Set Env
         run: sh env.sh >> env.js
 
